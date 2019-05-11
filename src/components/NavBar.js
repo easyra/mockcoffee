@@ -10,6 +10,7 @@ const NavBar = () => {
           <li className='item'>Instagram</li>
           <li className='item'>Twitter</li>
           <li className='item'>Discord</li>
+          <li className='item'>Login</li>
         </ul>
       </nav>
     </header>

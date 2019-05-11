@@ -12,12 +12,13 @@
     .info {
       display: flex;
       flex-direction: column;
+      align-items: center;
       max-width: 450px;
       .schedule {
         overflow-x: visible;
         color: $color4;
-
         width: 100%;
+        text-align: center;
         h2 {
           font-size: 48px;
         }
@@ -25,6 +26,16 @@
           li {
             font-size: 24px;
           }
+        }
+      }
+      .streaming {
+        display: flex;
+        align-items: center;
+        color: $color4;
+        margin-top: 25px;
+        h2 {
+          font-size: 36px;
+          margin-left: 5px;
         }
       }
     }
@@ -43,17 +54,6 @@
       }
       h3 {
         margin: 15px 0;
-        font-size: 48px;
-        padding: 15px;
-        border-radius: 5px;
-        background: $color1;
-        color: $color5;
-        width: max-content;
-        cursor: pointer;
-        transition: all 0.2s;
-        &:hover {
-          transform: scale(1.048);
-        }
       }
       .links {
         color: $color3;
