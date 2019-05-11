@@ -1,5 +1,4 @@
 import React from 'react';
-import NavBar from './NavBar';
 import CTAText from './CTAText';
 import Schedule from './Schedule';
 import StreamingStatus from './StreamingStatus';

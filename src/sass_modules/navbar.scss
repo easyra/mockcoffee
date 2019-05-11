@@ -21,6 +21,11 @@
           color: $color3;
         }
       }
+      .login-btn {
+        @extend .btn;
+        font-size: 16px;
+        border-radius: 2px;
+      }
     }
   }
 }
