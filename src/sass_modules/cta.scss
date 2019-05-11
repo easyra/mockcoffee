@@ -1,0 +1,80 @@
+.cta {
+  height: 100vh;
+  background: $bg;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .content {
+    @extend .container;
+    font-family: 'Merriweather', serif;
+    display: flex;
+    justify-content: space-between;
+    .info {
+      display: flex;
+      flex-direction: column;
+      max-width: 450px;
+      .schedule {
+        overflow-x: visible;
+        color: $color4;
+
+        width: 100%;
+        h2 {
+          font-size: 48px;
+        }
+        ul {
+          li {
+            font-size: 24px;
+          }
+        }
+      }
+    }
+
+    .cta-text {
+      max-width: 500px;
+      h1 {
+        font-size: 72px;
+        color: $color5;
+        text-transform: uppercase;
+      }
+      h2 {
+        font-size: 24px;
+        color: $color4;
+        margin-bottom: 15px;
+      }
+      h3 {
+        margin: 15px 0;
+        font-size: 48px;
+        padding: 15px;
+        border-radius: 5px;
+        background: $color1;
+        color: $color5;
+        width: max-content;
+        cursor: pointer;
+        transition: all 0.2s;
+        &:hover {
+          transform: scale(1.048);
+        }
+      }
+      .links {
+        color: $color3;
+        display: flex;
+        align-items: center;
+        .fab {
+          transition: all 0.3s;
+          margin: 0 10px 0 0;
+          &:hover {
+            color: $color1;
+            cursor: pointer;
+          }
+          &:active {
+            color: $color4;
+          }
+        }
+        .fas {
+          margin: 0 10px 0 0;
+          color: $color1;
+        }
+      }
+    }
+  }
+}

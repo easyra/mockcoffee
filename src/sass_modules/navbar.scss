@@ -1,0 +1,25 @@
+.nav {
+  position: absolute;
+  width: 100%;
+  margin: 15px 0;
+  .content {
+    @extend .container;
+    .items {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      .item {
+        font-family: 'Roboto', sans-serif;
+        cursor: pointer;
+        color: $color5;
+        text-transform: uppercase;
+        &:hover {
+          color: $color4;
+        }
+        &:active {
+          color: $color3;
+        }
+      }
+    }
+  }
+}
