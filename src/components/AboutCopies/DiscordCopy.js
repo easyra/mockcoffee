@@ -10,7 +10,7 @@ const DiscordCopy = () => {
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat.
         </p>
-        <h3 className='btn'>Join The Community</h3>
+        <h3 className='btn animate'>Join The Community</h3>
       </div>
     </div>
   );

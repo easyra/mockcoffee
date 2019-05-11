@@ -4,7 +4,7 @@ const StreamingStatus = () => {
   const [isOnline, setOnline] = useState(true);
   return (
     <div className='streaming'>
-      {isOnline && <h3 className='btn'>Live Now!</h3>}
+      {isOnline && <h3 className='btn animate'>Live Now!</h3>}
     </div>
   );
 };

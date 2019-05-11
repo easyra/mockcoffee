@@ -39,10 +39,12 @@ a {
   cursor: pointer;
   text-transform: uppercase;
   transition: all 0.2s;
-  &:hover {
-    transform: scale(1.048);
-  }
-  &:active {
-    transform: scale(1);
+  &.animate {
+    &:hover {
+      transform: scale(1.048);
+    }
+    &:active {
+      transform: scale(1);
+    }
   }
 }

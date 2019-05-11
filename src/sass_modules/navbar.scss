@@ -2,7 +2,7 @@
   position: fixed;
   background: $color5;
   width: 100%;
-  padding: 15px 0;
+  // padding: 15px 0;
   top: 0;
   left: 0;
   .content {
@@ -13,10 +13,11 @@
       align-items: center;
       .item {
         font-family: 'Roboto', sans-serif;
-        padding: 5px;
+        padding: 10px;
         cursor: pointer;
         color: $color3;
         text-transform: uppercase;
+        transition: all 0.2s;
         &:hover {
           color: $color1;
         }
@@ -27,7 +28,7 @@
       .login-btn {
         @extend .btn;
         font-size: 16px;
-        border-radius: 2px;
+        border-radius: 0px;
         color: $color5;
         &:hover {
           color: $color4;
