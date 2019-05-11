@@ -1,0 +1,33 @@
+.about {
+  width: 100%;
+  height: 100%;
+  background: $color3;
+  padding-bottom: 100px;
+  h2 {
+    text-align: center;
+    font-size: 36px;
+    color: $color5;
+    padding: 25px 0;
+  }
+  .text {
+    @extend .container;
+    display: flex;
+    &.right {
+      justify-content: flex-end;
+    }
+
+    .paragraph {
+      max-width: 500px;
+      font-size: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .btn {
+        margin: 15px 0;
+        font-size: 20px;
+        padding: 10px;
+      }
+    }
+  }
+}

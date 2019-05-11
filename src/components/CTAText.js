@@ -3,7 +3,9 @@ import React from 'react';
 const CTAText = () => {
   return (
     <div className='cta-text'>
-      <h1>MockCoffee</h1>
+      <h1>
+        <a href='#about'>MockCoffee</a>
+      </h1>
       <h2>Streaming Everyday 6AM - 10PM</h2>
       <h3 className='btn'>Support The Stream</h3>
       <div className='links'>

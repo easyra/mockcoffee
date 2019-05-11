@@ -3,11 +3,24 @@ body {
   height: 100%;
   line-height: 1.25;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 h1,
 h2,
 h3 {
   font-family: 'Merriweather', serif;
+}
+
+p,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .container {
