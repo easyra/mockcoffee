@@ -11,6 +11,12 @@ const NavBar = ({ match, history, location }) => {
               Mock<span>Coffee</span>
             </Link>
           </h1>
+          <h1 className='title-mobile'>
+            <Link to='/'>
+              M<span>C</span>
+            </Link>
+          </h1>
+          <i class='fas fa-bars menu fa-2x' />
           <li>
             <a className='item' href='https://www.youtube.com' target='_blank'>
               YouTube
@@ -27,12 +33,12 @@ const NavBar = ({ match, history, location }) => {
             </a>
           </li>
 
-          <li>
+          <li className='hide-tablet'>
             <a className='item' href='https://www.youtube.com' target='_blank'>
               Twitter
             </a>
           </li>
-          <li>
+          <li className='hide-tablet'>
             <a className='item' href='https://www.youtube.com' target='_blank'>
               Discord
             </a>

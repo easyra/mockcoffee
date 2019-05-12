@@ -13,9 +13,23 @@
     text-transform: uppercase;
     color: $color2;
     font-size: 24px;
+    @extend .hide-tablet;
     cursor: pointer;
     span {
       color: $color1;
+    }
+  }
+  .title-mobile {
+    @extend .title;
+    display: none;
+  }
+  .menu {
+    display: none;
+    color: $color1;
+    padding: 5px 0;
+    @media screen and (max-width: 500px) {
+      display: block;
+      margin: 0 15px;
     }
   }
   .content {
@@ -25,7 +39,13 @@
       justify-content: space-around;
       align-items: center;
       width: 100%;
+      @media screen and (max-width: 500px) {
+        justify-content: center;
+      }
       .item {
+        @media screen and (max-width: 500px) {
+          display: none;
+        }
         font-family: 'Roboto', sans-serif;
         padding: 10px;
         cursor: pointer;

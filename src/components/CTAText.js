@@ -22,7 +22,7 @@ const CTAText = () => {
           <i class='fab fa-twitter fa-3x link' />
         </a>
 
-        <i class='fas fa-arrow-left fa-4x arrow' />
+        <i class='fas fa-arrow-left fa-4x arrow hide-mobile' />
       </div>
     </div>
   );

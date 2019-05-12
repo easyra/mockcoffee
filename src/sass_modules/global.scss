@@ -8,6 +8,9 @@ body,
   background: $color5;
   // overflow-x: hidden;
 }
+body {
+  overflow-x: hidden;
+}
 h1,
 h2,
 h3 {
@@ -30,6 +33,12 @@ a {
   max-width: 1000px;
   width: 100%;
   margin: 0 auto;
+  @media screen and (max-width: 800px) {
+    max-width: 500px;
+  }
+  @media screen and (max-width: 500px) {
+    max-width: 300px;
+  }
 }
 
 .btn {
@@ -41,7 +50,7 @@ a {
   width: max-content;
   cursor: pointer;
   text-transform: uppercase;
-  transition: all 0.2s;
+  transition: 'transform' 0.2s;
   &.animate {
     &:hover {
       transform: scale(1.048);
@@ -49,5 +58,17 @@ a {
     &:active {
       transform: scale(1);
     }
+  }
+}
+
+.hide-tablet {
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+}
+
+.hide-mobile {
+  @media screen and (max-width: 500px) {
+    display: none;
   }
 }

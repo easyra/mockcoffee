@@ -15,7 +15,8 @@ const InstagramCopy = () => {
           href='https://www.youtube.com'
           target='_blank'
         >
-          Check Me out on Instagram
+          <span className='hide-mobile'>Check Me out on </span>
+          Instagram
         </a>
       </div>
     </div>

@@ -10,11 +10,16 @@
     font-family: 'Merriweather', serif;
     display: flex;
     justify-content: space-between;
+    @media screen and (max-width: 800px) {
+      flex-wrap: wrap;
+    }
+
     .info {
       display: flex;
       flex-direction: column;
       align-items: center;
       max-width: 450px;
+      width: 100%;
       .schedule {
         overflow-x: visible;
         color: $color4;
@@ -43,10 +48,25 @@
 
     .cta-text {
       max-width: 500px;
+      width: 100%;
+      @media screen and (max-width: 500px) {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      @media screen and (max-width: 800px) {
+        margin-bottom: 15px;
+      }
+
       h1 {
         font-size: 72px;
         color: $color5;
         text-transform: uppercase;
+        @media screen and (max-width: 500px) {
+          font-size: 36px;
+        }
       }
       h2 {
         font-size: 24px;
@@ -56,10 +76,20 @@
       h3 {
         margin: 15px 0;
       }
+      .btn {
+        @media screen and (max-width: 800px) {
+          font-size: 18px;
+          text-align: center;
+        }
+      }
       .links {
         color: $color3;
         display: flex;
         align-items: center;
+        @media screen and (max-width: 500px) {
+          justify-content: space-around;
+          width: 100%;
+        }
         .link {
           transition: all 0.3s;
           margin: 0 10px 0 0;
@@ -69,6 +99,9 @@
           }
           &:active {
             color: $color4;
+          }
+          @media screen and (max-width: 500px) {
+            margin: 0;
           }
         }
         .arrow {
