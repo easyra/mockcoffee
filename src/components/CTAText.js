@@ -9,11 +9,20 @@ const CTAText = () => {
       <h2>Streaming Everyday 6AM - 10PM</h2>
       <h3 className='btn animate'>Support The Stream</h3>
       <div className='links'>
-        <i class='fab fa-youtube fa-3x' />
-        <i class='fab fa-twitch fa-3x' />
-        <i class='fab fa-instagram fa-3x' />
-        <i class='fab fa-twitter fa-3x' />
-        <i class='fas fa-arrow-left fa-4x' />
+        <a className='link' href='https://www.youtube.com' target='_blank'>
+          <i class='fab fa-youtube fa-3x link' />
+        </a>
+        <a className='link' href='https://www.youtube.com' target='_blank'>
+          <i class='fab fa-twitch fa-3x link' />
+        </a>
+        <a className='link' href='https://www.youtube.com' target='_blank'>
+          <i class='fab fa-instagram fa-3x link' />
+        </a>
+        <a className='link' href='https://www.youtube.com' target='_blank'>
+          <i class='fab fa-twitter fa-3x link' />
+        </a>
+
+        <i class='fas fa-arrow-left fa-4x arrow' />
       </div>
     </div>
   );

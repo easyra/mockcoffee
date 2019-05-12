@@ -13,6 +13,7 @@
     text-transform: uppercase;
     color: $color2;
     font-size: 24px;
+    cursor: pointer;
     span {
       color: $color1;
     }
@@ -31,6 +32,15 @@
         color: $color2;
         text-transform: uppercase;
         transition: all 0.2s;
+        &.stream-link {
+          color: $color1;
+          &:hover {
+            color: $color2;
+          }
+          &:active {
+            color: $color1;
+          }
+        }
         &:hover {
           color: $color1;
         }

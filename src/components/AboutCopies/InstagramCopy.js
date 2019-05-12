@@ -10,7 +10,13 @@ const InstagramCopy = () => {
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat.
         </p>
-        <h3 className='btn animate'>Check Me out on Instagram</h3>
+        <a
+          className='btn animate'
+          href='https://www.youtube.com'
+          target='_blank'
+        >
+          Check Me out on Instagram
+        </a>
       </div>
     </div>
   );

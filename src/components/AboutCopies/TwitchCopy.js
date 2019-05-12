@@ -10,7 +10,13 @@ const TwitchCopy = () => {
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat.
         </p>
-        <h3 className='btn animate'>Follow on Twitch</h3>
+        <a
+          className='btn animate'
+          href='https://www.youtube.com'
+          target='_blank'
+        >
+          Follow on Twitch
+        </a>
       </div>
     </div>
   );

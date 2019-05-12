@@ -8,7 +8,7 @@ import StreamContainer from './components/StreamContainer';
 function App() {
   return (
     <div className='App'>
-      <NavBar />
+      <Route path='/' component={NavBar} />
       <Route strict exact path='/' component={LandingPage} />
       <Route strict exact path='/stream' component={StreamContainer} />
     </div>

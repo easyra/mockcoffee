@@ -60,7 +60,7 @@
         color: $color3;
         display: flex;
         align-items: center;
-        .fab {
+        .link {
           transition: all 0.3s;
           margin: 0 10px 0 0;
           &:hover {
@@ -71,7 +71,7 @@
             color: $color4;
           }
         }
-        .fas {
+        .arrow {
           margin: 0 10px 0 0;
           color: $color1;
         }
