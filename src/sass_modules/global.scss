@@ -1,8 +1,11 @@
 html,
-body {
+body,
+.App,
+#root {
   height: 100%;
   line-height: 1.25;
   box-sizing: border-box;
+  background: $color5;
   // overflow-x: hidden;
 }
 h1,
