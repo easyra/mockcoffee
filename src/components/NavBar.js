@@ -5,6 +5,9 @@ const NavBar = () => {
     <header className='nav'>
       <nav className='content'>
         <ul className='items'>
+          <h1 className='title'>
+            Mock<span>Coffee</span>
+          </h1>
           <li className='item'>YouTube</li>
           <li className='item'>Twitch</li>
           <li className='item'>Instagram</li>

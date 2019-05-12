@@ -2,20 +2,33 @@
   position: fixed;
   background: $color5;
   width: 100%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
   // padding: 15px 0;
   top: 0;
   left: 0;
+  .title {
+    margin-left: 50px;
+    text-transform: uppercase;
+    color: $color2;
+    font-size: 24px;
+    span {
+      color: $color1;
+    }
+  }
   .content {
-    @extend .container;
+    width: 100%;
     .items {
       display: flex;
       justify-content: space-around;
       align-items: center;
+      width: 100%;
       .item {
         font-family: 'Roboto', sans-serif;
         padding: 10px;
         cursor: pointer;
-        color: $color3;
+        color: $color2;
         text-transform: uppercase;
         transition: all 0.2s;
         &:hover {
