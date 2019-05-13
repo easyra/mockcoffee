@@ -1,0 +1,35 @@
+.navbar-mobile {
+  display: none;
+  &.active {
+    display: block;
+    @media screen and (min-width: 500px) {
+      display: none;
+    }
+  }
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: $color5;
+  .items {
+    margin-top: 50px;
+    text-align: center;
+    width: 100%;
+    li {
+      width: 100%;
+      padding: 5px 0;
+      color: $color2;
+      &:hover {
+        color: $color2;
+        background: $color4;
+      }
+    }
+    .item {
+      font-size: 28px;
+      text-transform: uppercase;
+    }
+  }
+}

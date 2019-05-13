@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NavBar = ({ match, history, location }) => {
+const NavBar = ({ match, history, location, toggleNavModel, navbarModel }) => {
   return (
     <header className='nav'>
       <nav className='content'>
@@ -16,7 +16,10 @@ const NavBar = ({ match, history, location }) => {
               M<span>C</span>
             </Link>
           </h1>
-          <i class='fas fa-bars menu fa-2x' />
+          <i
+            class={`fas fa-${navbarModel ? 'times' : 'bars'} menu  fa-2x`}
+            onClick={toggleNavModel}
+          />
           <li>
             <a className='item' href='https://www.youtube.com' target='_blank'>
               YouTube

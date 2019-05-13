@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CTA from './CTA';
 import AboutContainer from './AboutContainer';
 
