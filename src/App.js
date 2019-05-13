@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './App.scss';
 import LandingPage from './components/LandingPage';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import StreamContainer from './components/StreamContainer';
 import NavBarMobile from './components/NavBarMobile';
+import Page404 from './components/Page404';
 
 function App() {
   const [navbarModel, setNavModel] = useState(false);
@@ -24,8 +25,11 @@ function App() {
           />
         )}
       />
-      <Route strict exact path='/' component={LandingPage} />
-      <Route strict exact path='/stream' component={StreamContainer} />
+      <Switch>
+        <Route strict exact path='/' component={LandingPage} />
+        <Route strict exact path='/stream' component={StreamContainer} />
+        <Route path='/' component={Page404} />
+      </Switch>
     </div>
   );
 }
