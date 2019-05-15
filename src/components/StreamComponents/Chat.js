@@ -6,7 +6,6 @@ import AWS from '../../aws/AWSConfig.js';
 const Chat = () => {
   const docClient = new AWS.DynamoDB.DocumentClient();
   const getChat = () => {
-    const table = 'chatroom';
     const params = {
       TableName: 'chatroom',
       ExpressionAttributeNames: {
