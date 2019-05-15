@@ -51,7 +51,7 @@ const NavBar = ({ match, history, location, toggleNavModel, navbarModel }) => {
               Shop
             </a>
           </li>
-          {!location.pathname.includes('/stream') && (
+          {!(location.pathname === '/stream') && (
             <li>
               <Link className='item stream-link' to='/stream'>
                 Stream

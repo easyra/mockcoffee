@@ -8,6 +8,10 @@ body,
   background: $color5;
   // overflow-x: hidden;
 }
+
+* {
+  box-sizing: border-box;
+}
 body {
   overflow-x: hidden;
 }
