@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 const ChatInput = ({ addNewMessage }) => {
   const [input, SetInput] = useState({ text: '' });
   const handlePress = e => {

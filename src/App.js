@@ -6,7 +6,6 @@ import NavBar from './components/NavBar';
 import StreamContainer from './components/StreamContainer';
 import NavBarMobile from './components/NavBarMobile';
 import Page404 from './components/Page404';
-
 function App() {
   const [navbarModel, setNavModel] = useState(false);
   const toggleNavModel = () => {
