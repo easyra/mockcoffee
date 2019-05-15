@@ -4,8 +4,7 @@ const ChatInput = ({ addNewMessage }) => {
   const handlePress = e => {
     if (input.text.replace(/\s/g, '').length > 0) {
       if (e.key === 'Enter') {
-        const message = { username: 'MockRabbit', text: input.text };
-        addNewMessage(message);
+        addNewMessage('MockRabbit', input.text);
         SetInput({ text: '' });
       }
     }

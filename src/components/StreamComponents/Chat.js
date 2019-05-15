@@ -4,23 +4,25 @@ import MessageBox from './MessageBox';
 import AWS from '../../aws/AWSConfig.js';
 
 const Chat = () => {
-  console.log('object');
-
   const docClient = new AWS.DynamoDB.DocumentClient();
   const getChat = () => {
     const table = 'chatroom';
     const params = {
       TableName: 'chatroom',
       ExpressionAttributeNames: {
-        '#t': 'text'
+        '#t': 'text',
+        '#time': 'timestamp'
       },
-      ProjectionExpression: 'username, #t'
+      ProjectionExpression: 'username, #t, #time'
     };
     docClient.scan(params, (err, data) => {
       if (err) {
         console.log(err);
       } else {
-        setMessages(data.Items);
+        const newMessages = data.Items.sort((a, b) => {
+          return a.timestamp - b.timestamp;
+        });
+        setMessages(newMessages);
       }
     });
   };
@@ -30,10 +32,25 @@ const Chat = () => {
   });
 
   const [messages, setMessages] = useState([]);
-  const addNewMessage = newMessage => {
-    const messagesClone = messages.slice(0);
-    messagesClone.push(newMessage);
-    setMessages(messagesClone);
+  const addNewMessage = (username, text) => {
+    const params = {
+      TableName: 'chatroom',
+      Item: {
+        text: text,
+        username: 'MockRabbit',
+        timestamp: Date.now()
+      }
+    };
+    docClient.put(params, function(err, data) {
+      if (err) {
+        console.error(
+          'Unable to add item. Error JSON:',
+          JSON.stringify(err, null, 2)
+        );
+      } else {
+        console.log('Added item:', JSON.stringify(data, null, 2));
+      }
+    });
   };
   return (
     <div className='chat'>
