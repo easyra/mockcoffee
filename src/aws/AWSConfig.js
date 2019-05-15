@@ -1,10 +1,11 @@
 import AWS from 'aws-sdk';
-import dotenv from './dotenv';
+// import dotenv from './dotenv';
+
 AWS.config.update({
   region: 'us-west-2',
   endpoint: 'https://dynamodb.us-west-2.amazonaws.com',
-  accessKeyId: process.env.ID_AWS,
-  secretAccessKey: process.env.KEY_AWS
+  accessKeyId: process.env.REACT_APP_AWS_KEY,
+  secretAccessKey: process.env.REACT_APP_AWS_KEY
 });
 
 export default AWS;
