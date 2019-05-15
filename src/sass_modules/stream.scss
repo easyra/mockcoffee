@@ -41,6 +41,7 @@
         .message {
           padding: 5px 0 5px 5px;
           line-height: 1.5;
+          overflow-wrap: break-word;
 
           .username {
             cursor: pointer;
