@@ -1,12 +1,10 @@
 import AWS from 'aws-sdk';
 import dotenv from './dotenv';
-const key = process.env.KEY_AWS || require('./accesskeys.js').key;
-const id = process.env.ID_AWS || require('./accesskeys.js').id;
 AWS.config.update({
   region: 'us-west-2',
   endpoint: 'https://dynamodb.us-west-2.amazonaws.com',
-  accessKeyId: id,
-  secretAccessKey: key
+  accessKeyId: process.env.ID_AWS,
+  secretAccessKey: process.env.KEY_AWS
 });
 
 export default AWS;
