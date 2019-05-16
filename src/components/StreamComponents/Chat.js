@@ -1,55 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import ChatInput from './ChatInput';
 import MessageBox from './MessageBox';
+import { database } from '../../firebase';
 import AWS from '../../aws/AWSConfig.js';
 
 const Chat = () => {
-  const docClient = new AWS.DynamoDB.DocumentClient();
-  const getChat = () => {
-    const params = {
-      TableName: 'chatroom',
-      ExpressionAttributeNames: {
-        '#t': 'text',
-        '#time': 'timestamp'
-      },
-      ProjectionExpression: 'username, #t, #time'
-    };
-    docClient.scan(params, (err, data) => {
-      if (err) {
-        console.log(err);
-      } else {
-        const newMessages = data.Items.sort((a, b) => {
-          return a.timestamp - b.timestamp;
-        });
-        setMessages(newMessages);
-      }
+  const getChatFB = () => {
+    database.ref('chatroom').on('value', snapshot => {
+      const messages = snapshot.exists() ? Object.values(snapshot.val()) : [];
+      setMessages(messages);
     });
   };
 
   useEffect(() => {
-    getChat();
+    getChatFB();
   });
 
   const [messages, setMessages] = useState([]);
   const addNewMessage = (username, text) => {
-    const params = {
-      TableName: 'chatroom',
-      Item: {
-        text: text,
-        username: 'MockRabbit',
-        timestamp: Date.now()
-      }
-    };
-    docClient.put(params, function(err, data) {
-      if (err) {
-        console.error(
-          'Unable to add item. Error JSON:',
-          JSON.stringify(err, null, 2)
-        );
-      } else {
-        console.log('Added item:', JSON.stringify(data, null, 2));
-      }
-    });
+    database.ref('chatroom').push({ username, text });
   };
   return (
     <div className='chat'>

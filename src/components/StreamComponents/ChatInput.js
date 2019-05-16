@@ -28,7 +28,7 @@ const ChatInput = ({ addNewMessage }) => {
         onChange={handleChange}
         name='text'
         className='input-box'
-        placeholder='TYPE SOMETHING YOU DUMB BITCH'
+        placeholder='placeholder text that gets nerds to give me money'
       />
 
       <div className='char-counter'>{input.text.length}/250</div>

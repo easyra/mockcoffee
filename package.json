@@ -5,6 +5,7 @@
   "dependencies": {
     "aws-sdk": "^2.455.0",
     "dotenv": "^8.0.0",
+    "firebase": "^6.0.2",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
