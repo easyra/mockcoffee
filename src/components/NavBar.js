@@ -1,7 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { auth, firestore } from '../firebase';
 
-const NavBar = ({ match, history, location, toggleNavModel, navbarModel }) => {
+const NavBar = ({
+  match,
+  history,
+  location,
+  toggleNavModel,
+  navbarModel,
+  setLoginModal
+}) => {
+  const [isLoggedIn, setLoginStatus] = useState(false);
+  useEffect(() => {
+    auth.onAuthStateChanged(async user => {
+      if (user) {
+        firestore
+          .collection('/users')
+          .doc(user.uid)
+          .get()
+          .then(doc => {
+            if (doc.exists) {
+              setLoginStatus(true);
+            } else {
+              setLoginStatus(false);
+            }
+          });
+      } else {
+        setLoginStatus(false);
+      }
+    });
+  });
+
+  const handleLogButton = () => {
+    if (isLoggedIn) {
+      auth
+        .signOut()
+        .then(() => {
+          console.log('signed out');
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      setLoginModal(true);
+    }
+  };
+
   return (
     <header className='nav'>
       <nav className='content'>
@@ -58,7 +102,9 @@ const NavBar = ({ match, history, location, toggleNavModel, navbarModel }) => {
               </Link>
             </li>
           )}
-          <li className='item login-btn'>Login</li>
+          <li className='item login-btn' onClick={handleLogButton}>
+            {isLoggedIn ? 'Sign out' : 'Sign in'}
+          </li>
         </ul>
       </nav>
     </header>

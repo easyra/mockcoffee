@@ -1,0 +1,14 @@
+.account-page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .create-user {
+    @extend .container;
+    margin: auto;
+    h6 {
+      color: $color2;
+    }
+  }
+}

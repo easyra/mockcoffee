@@ -64,6 +64,10 @@ a {
       transform: scale(1);
     }
   }
+  &.disabled {
+    background: lightgray;
+    color: gray;
+  }
 }
 
 .hide-tablet {
@@ -80,4 +84,24 @@ a {
 
 .hide-overflow-y {
   overflow-y: hidden;
+}
+
+.color1 {
+  color: $color1;
+}
+
+.color2 {
+  color: $color2;
+}
+
+.color3 {
+  color: $color3;
+}
+
+.color4 {
+  color: $color4;
+}
+
+.color5 {
+  color: $color5;
 }
