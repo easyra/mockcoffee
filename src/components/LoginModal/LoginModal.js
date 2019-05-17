@@ -18,19 +18,6 @@ const LoginModal = ({ setLoginModal, LoginModalOpen, history }) => {
       setLoginModal(false);
     }
   };
-
-  const TwitterLogin = () => {
-    auth
-      .signInWithPopup(TwitterProvider)
-      .then(result => {
-        const token = result.credential.accessToken;
-        const user = result.user;
-        setLoginModal(false);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
   return (
     <div
       className={`login-modal ${LoginModalOpen ? 'active' : ''}`}

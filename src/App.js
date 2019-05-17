@@ -24,12 +24,10 @@ function App() {
       }`}
     >
       <NavBarMobile navbarModel={navbarModel} />
-      {LoginModalOpen && (
-        <LoginModal
-          setLoginModal={setLoginModal}
-          LoginModalOpen={LoginModalOpen}
-        />
-      )}
+      <LoginModal
+        setLoginModal={setLoginModal}
+        LoginModalOpen={LoginModalOpen}
+      />
       <Route
         path='/'
         render={props => (
