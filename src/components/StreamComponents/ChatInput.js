@@ -5,11 +5,12 @@ const ChatInput = ({ addNewMessage }) => {
   const [input, SetInput] = useState({ text: '' });
   const { isLoggedIn, setLoginModal } = useContext(LoggedIn);
   const handlePress = e => {
-    if (input.text.replace(/\s/g, '').length > 0) {
-      if (e.key === 'Enter') {
+    if (e.key === 'Enter') {
+      const { text } = input;
+      SetInput({ text: '' });
+      if (input.text.replace(/\s/g, '').length > 0) {
         if (isLoggedIn) {
-          addNewMessage(input.text);
-          SetInput({ text: '' });
+          addNewMessage(text);
         } else {
           setLoginModal(true);
         }
@@ -30,14 +31,14 @@ const ChatInput = ({ addNewMessage }) => {
   return (
     <div className='chat-input'>
       <textarea
-        onKeyUp={handlePress}
+        onKeyPress={handlePress}
         value={input.text}
         onChange={handleChange}
         name='text'
         className='input-box'
         placeholder={
           isLoggedIn && auth.currentUser
-            ? `Hi ${auth.currentUser.displayName}! Say something friendo.`
+            ? `Hi ${auth.currentUser.displayName}! Say something!`
             : 'You have to be logged in to say something.'
         }
       />
