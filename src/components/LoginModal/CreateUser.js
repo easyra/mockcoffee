@@ -51,6 +51,15 @@ const CreateUser = ({ setUserExists, setLoginModal }) => {
     }
   };
 
+  const switchAuth = () => {
+    auth
+      .signOut()
+      .then(() => {
+        setUserExists(true);
+      })
+      .catch(err => console.log(err));
+  };
+
   const validation = value => {
     let valid = true;
     if (value.length > 3 && value.length < 21) {
@@ -91,6 +100,9 @@ const CreateUser = ({ setUserExists, setLoginModal }) => {
           SUBMIT
         </div>
       )}
+      <h6 onClick={switchAuth} className='switch-auth'>
+        Choose different Sign In method?
+      </h6>
     </div>
   );
 };

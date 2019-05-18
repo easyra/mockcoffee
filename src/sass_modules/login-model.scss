@@ -21,12 +21,28 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    h2 {
+      font-size: 36px;
+      text-transform: uppercase;
+      margin: 15px 0;
+    }
+    .loading-icon {
+      margin-top: 15px;
+    }
+    .btn {
+      &.google {
+        background: #df5548;
+        color: #fff;
+        i {
+          margin-right: 15px;
+        }
+      }
+    }
     &.create-user {
       color: $color5;
       text-align: center;
       h2 {
-        font-size: 36px;
-        text-transform: uppercase;
+        margin: 0;
       }
       input {
         margin: 15px 0 5px;
@@ -44,6 +60,14 @@
         transition: color 0.3s;
         &.err {
           color: red;
+        }
+        &.switch-auth {
+          color: $color5;
+          cursor: pointer;
+          margin: 10px 0;
+          &:hover {
+            color: $color1;
+          }
         }
       }
     }

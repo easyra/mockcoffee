@@ -10,10 +10,10 @@ import {
 const LoginContent = ({ setLoginModal, setUserExists }) => {
   const [isLoading, setIsLoading] = useState(false);
   const GoogleLogin = () => {
+    setIsLoading(true);
     auth
       .signInWithPopup(GoogleProvider)
       .then(result => {
-        setIsLoading(true);
         const user = result.user;
         const userDoc = firestore.collection('users').doc(user.uid);
         userDoc
@@ -26,19 +26,27 @@ const LoginContent = ({ setLoginModal, setUserExists }) => {
               setUserExists(false);
             }
           })
-          .catch(err => console.log(err));
+          .catch(err => {
+            setIsLoading(false);
+          });
       })
       .catch(err => {
-        console.log(err);
+        setIsLoading(false);
       });
   };
 
   return (
     <div className='content'>
-      <div className='btn' onClick={GoogleLogin}>
+      <h2>SignIn Here:</h2>
+      <div
+        className='btn google animate
+      '
+        onClick={GoogleLogin}
+      >
+        <i class='fab fa-google-plus-square' />
         Google
       </div>
-      {isLoading && <LoadingIcon />}
+      {isLoading && <LoadingIcon color='1' />}
     </div>
   );
 };
