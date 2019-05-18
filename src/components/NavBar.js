@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { auth, firestore } from '../firebase';
+import { LoggedIn } from '../App';
 
 const NavBar = ({
   match,
@@ -10,27 +11,7 @@ const NavBar = ({
   navbarModel,
   setLoginModal
 }) => {
-  const [isLoggedIn, setLoginStatus] = useState(false);
-  useEffect(() => {
-    auth.onAuthStateChanged(async user => {
-      if (user) {
-        firestore
-          .collection('/users')
-          .doc(user.uid)
-          .get()
-          .then(doc => {
-            if (doc.exists) {
-              setLoginStatus(true);
-            } else {
-              setLoginStatus(false);
-            }
-          });
-      } else {
-        setLoginStatus(false);
-      }
-    });
-  });
-
+  const { isLoggedIn } = useContext(LoggedIn);
   const handleLogButton = () => {
     if (isLoggedIn) {
       auth

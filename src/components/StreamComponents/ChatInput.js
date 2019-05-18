@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { auth } from '../../firebase';
+import { LoggedIn } from '../../App';
 const ChatInput = ({ addNewMessage }) => {
   const [input, SetInput] = useState({ text: '' });
+  const { isLoggedIn, setLoginModal } = useContext(LoggedIn);
   const handlePress = e => {
     if (input.text.replace(/\s/g, '').length > 0) {
       if (e.key === 'Enter') {
-        addNewMessage('MockRabbit', input.text);
-        SetInput({ text: '' });
+        if (isLoggedIn) {
+          addNewMessage(input.text);
+          SetInput({ text: '' });
+        } else {
+          setLoginModal(true);
+        }
       }
     }
   };
@@ -28,7 +35,11 @@ const ChatInput = ({ addNewMessage }) => {
         onChange={handleChange}
         name='text'
         className='input-box'
-        placeholder='placeholder text that gets nerds to give me money'
+        placeholder={
+          isLoggedIn && auth.currentUser
+            ? `Hi ${auth.currentUser.displayName}! Say something friendo.`
+            : 'You have to be logged in to say something.'
+        }
       />
 
       <div className='char-counter'>{input.text.length}/250</div>
