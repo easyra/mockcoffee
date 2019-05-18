@@ -14,7 +14,7 @@ const Chat = () => {
 
   useEffect(() => {
     getChatFB();
-  });
+  }, []);
 
   const [messages, setMessages] = useState([]);
   const addNewMessage = text => {
