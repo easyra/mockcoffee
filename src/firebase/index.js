@@ -16,4 +16,6 @@ export const auth = firebase.auth();
 export const GoogleProvider = new firebase.auth.GoogleAuthProvider();
 export const TwitterProvider = new firebase.auth.TwitterAuthProvider();
 export const firestore = firebase.firestore();
+export const arrayUnion = firebase.firestore.FieldValue.arrayUnion;
+export const arrayRemove = firebase.firestore.FieldValue.arrayRemove;
 // firebase.auth.AuthCredential

@@ -22,7 +22,6 @@ const MessageBox = React.memo(({ messages, emoteList }) => {
             wordArr[i] = wordArr[i] + ' ';
           }
         }
-        console.log(wordArr);
         return <Message username={username} text={wordArr} />;
       })}
       <div className='bottom-text' ref={ref} />
