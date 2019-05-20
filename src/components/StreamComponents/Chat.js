@@ -7,6 +7,7 @@ import AWS from '../../aws/AWSConfig.js';
 const Chat = () => {
   const [emoteList, setEmoteList] = useState({});
   const [messages, setMessages] = useState([]);
+  const [autoScroll, setAutoScroll] = useState(true);
   const getChatFB = () => {
     database
       .ref('chatroom')
@@ -36,12 +37,24 @@ const Chat = () => {
     if (auth.currentUser) {
       const username = auth.currentUser.displayName;
       const uid = auth.currentUser.uid;
+      const messageBox = document.querySelector('.message-box');
+      if (messageBox.scrollTop > 1000) {
+        setAutoScroll(true);
+      } else {
+        setAutoScroll(false);
+      }
+
       database.ref('chatroom').push({ username, text, uid });
     }
   };
   return (
     <div className='chat'>
-      <MessageBox messages={messages} emoteList={emoteList} />
+      <MessageBox
+        messages={messages}
+        emoteList={emoteList}
+        autoScroll={autoScroll}
+        setAutoScroll={setAutoScroll}
+      />
       <ChatInput addNewMessage={addNewMessage} />
     </div>
   );

@@ -29,6 +29,17 @@
       font-size: 13px;
       max-height: 550px;
       height: 100%;
+
+      .bottom-text {
+        color: $color5;
+        text-align: center;
+        text-transform: uppercase;
+        cursor: pointer;
+        &.active {
+          color: $color1;
+        }
+      }
+
       .message-box {
         padding-left: 0px;
         padding-top: 5px;
