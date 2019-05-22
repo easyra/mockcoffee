@@ -31,16 +31,25 @@
       height: 100%;
 
       .bottom-text {
-        color: $color5;
+        position: fixed;
+        background: rgba(0, 0, 0, 0.8);
+        display: none;
+        max-width: 263px;
+        width: 100%;
+        padding: 5px 15px;
+        margin-top: -25px;
+        z-index: 2;
+        color: $color1;
         text-align: center;
         text-transform: uppercase;
         cursor: pointer;
         &.active {
-          color: $color1;
+          display: inline-block;
         }
       }
 
       .message-box {
+        position: relative;
         padding-left: 0px;
         padding-top: 5px;
         // border: 1px solid $color4;

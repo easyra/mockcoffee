@@ -28,22 +28,15 @@ const Chat = () => {
       .catch(err => console.log('err'));
   };
 
-  useEffect(() => {
-    getChatFB();
-    getChatInfo();
+  useEffect(async () => {
+    await getChatInfo();
+    await getChatFB();
   }, []);
 
   const addNewMessage = text => {
     if (auth.currentUser) {
       const username = auth.currentUser.displayName;
       const uid = auth.currentUser.uid;
-      const messageBox = document.querySelector('.message-box');
-      if (messageBox.scrollTop > 1000) {
-        setAutoScroll(true);
-      } else {
-        setAutoScroll(false);
-      }
-
       database.ref('chatroom').push({ username, text, uid });
     }
   };

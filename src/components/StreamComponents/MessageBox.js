@@ -1,15 +1,27 @@
-import React, { Component, useEffect, useRef } from 'react';
+import React, { Component, useEffect, useState, useRef } from 'react';
 import Message from './Message.js';
 import Emote from './Emote.js';
 
 const MessageBox = React.memo(
   ({ messages, emoteList, autoScroll, setAutoScroll }) => {
+    const [maxScrollTop, setMaxScrollTop] = useState(null);
     const ref = useRef(null);
+
+    const handleScroll = e => {
+      const { scrollTop, scrollHeight } = e.target;
+
+      if (scrollTop >= maxScrollTop) {
+        setAutoScroll(true);
+      } else {
+        setAutoScroll(false);
+      }
+    };
 
     const scrollToBottom = () => {
       const messageBox = document.querySelector('.message-box');
-      messageBox.scrollTo(0, messageBox.scrollHeight);
+      messageBox.scrollTop = messageBox.scrollHeight;
       setAutoScroll(true);
+      setMaxScrollTop(messageBox.scrollTop);
     };
 
     useEffect(() => {
@@ -19,7 +31,7 @@ const MessageBox = React.memo(
     });
     return (
       <>
-        <div className='message-box'>
+        <div className='message-box' onScroll={handleScroll}>
           {messages.map(message => {
             let { text } = message;
             const { username } = message;
@@ -40,7 +52,7 @@ const MessageBox = React.memo(
           className={'bottom-text ' + (autoScroll ? '' : 'active')}
           onClick={scrollToBottom}
         >
-          new messages!
+          more messages below
         </div>
       </>
     );
