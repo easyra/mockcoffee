@@ -10,7 +10,7 @@ const MessageBox = React.memo(
     const handleScroll = e => {
       const { scrollTop, scrollHeight } = e.target;
 
-      if (scrollTop >= maxScrollTop) {
+      if (scrollTop >= maxScrollTop - 20) {
         setAutoScroll(true);
       } else {
         setAutoScroll(false);
