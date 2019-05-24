@@ -3,10 +3,10 @@ import React from 'react';
 const Schedule = ({ twitchFollowers }) => {
   return (
     <div className='schedule'>
-      <h2>Followers</h2>
+      <h2>Following</h2>
       <ul>
-        {twitchFollowers.map(({ from_name }) => (
-          <l1>{from_name}</l1>
+        {twitchFollowers.map(({ to_name }) => (
+          <li>{to_name}</li>
         ))}
       </ul>
     </div>

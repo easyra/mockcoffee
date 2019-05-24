@@ -14,7 +14,7 @@ const CTA = () => {
     };
     axios
       .get(
-        'https://api.twitch.tv/helix/users/follows?to_id=280154778&first=5',
+        'https://api.twitch.tv/helix/users/follows?from_id=280154778&first=5',
         {
           headers
         }
