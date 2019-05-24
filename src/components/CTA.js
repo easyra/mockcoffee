@@ -1,16 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CTAText from './CTAText';
 import Schedule from './Schedule';
 import StreamingStatus from './StreamingStatus';
+import axios from 'axios';
 
 const CTA = () => {
+  const [twitchFollowers, setTwitchFollowers] = useState([]);
+
+  useEffect(() => {
+    const headers = {
+      ['Client-ID']: process.env.CLIENT_ID_TWITCH
+    };
+    axios
+      .get(
+        'https://api.twitch.tv/helix/users/follows?to_id=280154778&first=5',
+        {
+          headers
+        }
+      )
+      .then(({ data }) => {
+        setTwitchFollowers(data.data);
+        console.log(data);
+      })
+      .catch(err => console.log(err));
+  }, []);
   return (
     <>
       <div className='cta'>
         <div className='content'>
           <CTAText />
           <div className='info'>
-            <Schedule />
+            <Schedule twitchFollowers={twitchFollowers} />
             <StreamingStatus />
           </div>
         </div>
