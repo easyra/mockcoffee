@@ -1,14 +1,13 @@
 import React from 'react';
 
-const Schedule = () => {
+const Schedule = ({ twitchFollowers }) => {
   return (
     <div className='schedule'>
-      <h2>Schedule</h2>
+      <h2>Followers</h2>
       <ul>
-        <li>5/11 12:00pm Streaming</li>
-        <li>5/11 12:00pm Streaming</li>
-        <li>5/11 12:00pm Streaming</li>
-        <li>5/11 12:00pm Streaming</li>
+        {twitchFollowers.map(({ from_name }) => (
+          <l1>{from_name}</l1>
+        ))}
       </ul>
     </div>
   );
