@@ -6,6 +6,7 @@ import axios from 'axios';
 
 const CTA = () => {
   const [twitchFollowers, setTwitchFollowers] = useState([]);
+  const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
     const headers = {
@@ -24,6 +25,24 @@ const CTA = () => {
       })
       .catch(err => console.log(err));
   }, []);
+
+  useEffect(() => {
+    const headers = {
+      ['Client-ID']: process.env.REACT_APP_CLIENT_ID_TWITCH
+    };
+    axios
+      .get('https://api.twitch.tv/helix/streams?user_id=280154778&', {
+        headers
+      })
+      .then(({ data }) => {
+        if (data.data[0]) {
+          setIsLive(true);
+        } else {
+          setIsLive(false);
+        }
+      })
+      .catch(err => console.log(err));
+  }, []);
   return (
     <>
       <div className='cta'>
@@ -31,7 +50,7 @@ const CTA = () => {
           <CTAText />
           <div className='info'>
             <Schedule twitchFollowers={twitchFollowers} />
-            <StreamingStatus />
+            {isLive && <StreamingStatus />}
           </div>
         </div>
       </div>
