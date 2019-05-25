@@ -5,9 +5,10 @@ const Schedule = ({ twitchFollowers }) => {
     <div className='schedule'>
       <h2>Following</h2>
       <ul>
-        {twitchFollowers.map(({ to_name }) => (
-          <li>{to_name}</li>
-        ))}
+        {twitchFollowers.map(({ to_name }) => {
+          let count = 0;
+          return <li key={count++}>{to_name}</li>;
+        })}
       </ul>
     </div>
   );

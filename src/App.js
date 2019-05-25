@@ -22,6 +22,7 @@ function App() {
 
   const [isLoggedIn, setLoginStatus] = useState(false);
   useEffect(() => {
+    let didCancel = false;
     auth.onAuthStateChanged(async user => {
       if (user) {
         firestore
@@ -29,16 +30,23 @@ function App() {
           .doc(user.uid)
           .get()
           .then(doc => {
-            if (doc.exists) {
-              setLoginStatus(true);
-            } else {
-              setLoginStatus(false);
+            if (didCancel) {
+              if (doc.exists) {
+                setLoginStatus(true);
+              } else {
+                setLoginStatus(false);
+              }
             }
           });
       } else {
-        setLoginStatus(false);
+        if (didCancel) {
+          setLoginStatus(false);
+        }
       }
     });
+    return () => {
+      didCancel = true;
+    };
   });
 
   return (

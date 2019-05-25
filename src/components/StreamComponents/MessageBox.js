@@ -25,9 +25,13 @@ const MessageBox = React.memo(
     };
 
     useEffect(() => {
-      if (autoScroll) {
+      let didCancel = false;
+      if (autoScroll && !didCancel) {
         scrollToBottom();
       }
+      return () => {
+        didCancel = true;
+      };
     });
     return (
       <>
@@ -45,7 +49,9 @@ const MessageBox = React.memo(
                 wordArr[i] = wordArr[i] + ' ';
               }
             }
-            return <Message username={username} text={wordArr} />;
+            return (
+              <Message username={username} text={wordArr} key={Date.now()} />
+            );
           })}
         </div>
         <div

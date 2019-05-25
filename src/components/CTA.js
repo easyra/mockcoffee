@@ -7,42 +7,63 @@ import axios from 'axios';
 const CTA = () => {
   const [twitchFollowers, setTwitchFollowers] = useState([]);
   const [isLive, setIsLive] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    const headers = {
-      ['Client-ID']: process.env.REACT_APP_CLIENT_ID_TWITCH
+    let didCancel = false;
+
+    const getFollowers = () => {
+      const headers = {
+        ['Client-ID']: process.env.REACT_APP_CLIENT_ID_TWITCH
+      };
+      axios
+        .get(
+          'https://api.twitch.tv/helix/users/follows?from_id=280154778&first=5',
+          {
+            headers
+          }
+        )
+        .then(({ data }) => {
+          if (!didCancel) {
+            setTwitchFollowers(data.data);
+          }
+        })
+        .catch(err => console.log(err));
+      return () => {
+        didCancel = true;
+      };
     };
-    axios
-      .get(
-        'https://api.twitch.tv/helix/users/follows?from_id=280154778&first=5',
-        {
+    getFollowers();
+  }, []);
+
+  useEffect(() => {
+    let didCancel = false;
+    const getLiveStatus = () => {
+      const headers = {
+        ['Client-ID']: process.env.REACT_APP_CLIENT_ID_TWITCH
+      };
+      axios
+        .get('https://api.twitch.tv/helix/streams?user_id=280154778&', {
           headers
-        }
-      )
-      .then(({ data }) => {
-        setTwitchFollowers(data.data);
-        console.log(data);
-      })
-      .catch(err => console.log(err));
+        })
+        .then(({ data }) => {
+          if (!didCancel) {
+            if (data.data[0]) {
+              setIsLive(true);
+            } else {
+              setIsLive(false);
+            }
+          }
+        })
+        .catch(err => console.log(err));
+      getLiveStatus();
+    };
+
+    return () => {
+      didCancel = true;
+    };
   }, []);
 
-  useEffect(() => {
-    const headers = {
-      ['Client-ID']: process.env.REACT_APP_CLIENT_ID_TWITCH
-    };
-    axios
-      .get('https://api.twitch.tv/helix/streams?user_id=280154778&', {
-        headers
-      })
-      .then(({ data }) => {
-        if (data.data[0]) {
-          setIsLive(true);
-        } else {
-          setIsLive(false);
-        }
-      })
-      .catch(err => console.log(err));
-  }, []);
   return (
     <>
       <div className='cta'>
