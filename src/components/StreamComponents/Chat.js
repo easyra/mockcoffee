@@ -23,6 +23,7 @@ const Chat = () => {
             .limitToLast(50)
             .on('value', snapshot => {
               if (!didCancel) {
+                setMessages([]);
                 const messages = snapshot.exists()
                   ? Object.values(snapshot.val())
                   : [];
@@ -35,15 +36,19 @@ const Chat = () => {
 
     return function cleanup() {
       database.ref('chatroom').off();
+      setMessages([]);
       didCancel = true;
     };
   }, []);
 
-  const addNewMessage = text => {
+  const addNewMessage = async text => {
     if (auth.currentUser) {
       const username = auth.currentUser.displayName;
       const uid = auth.currentUser.uid;
-      database.ref('chatroom').push({ username, text, uid });
+      const msgId = await database.ref('chatroom').push().key;
+      database
+        .ref(`chatroom/${msgId}`)
+        .set({ username, text, uid, timestamp: Date.now(), msgId });
     }
   };
   return (

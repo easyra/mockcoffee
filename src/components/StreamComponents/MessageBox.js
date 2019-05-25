@@ -36,9 +36,7 @@ const MessageBox = React.memo(
     return (
       <>
         <div className='message-box' onScroll={handleScroll}>
-          {messages.map(message => {
-            let { text } = message;
-            const { username } = message;
+          {messages.map(({ text, username, timestamp, msgId }) => {
             let wordArr = text.split(' ');
             for (let i = wordArr.length - 1; i >= 0; i--) {
               if (emoteList[wordArr[i]]) {
@@ -49,9 +47,7 @@ const MessageBox = React.memo(
                 wordArr[i] = wordArr[i] + ' ';
               }
             }
-            return (
-              <Message username={username} text={wordArr} key={Date.now()} />
-            );
+            return <Message username={username} text={wordArr} key={msgId} />;
           })}
         </div>
         <div
