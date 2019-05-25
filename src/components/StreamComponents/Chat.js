@@ -11,33 +11,28 @@ const Chat = () => {
 
   useEffect(() => {
     let didCancel = false;
-    const getChatFB = () => {
-      database
-        .ref('chatroom')
-        .limitToLast(50)
-        .on('value', snapshot => {
-          if (!didCancel) {
-            const messages = snapshot.exists()
-              ? Object.values(snapshot.val())
-              : [];
-            setMessages(messages);
-          }
-        });
-    };
-    const getChatInfo = () => {
-      firestore
-        .collection('chatinfo')
-        .doc('emoteList')
-        .get()
-        .then(doc => {
-          if (!didCancel) {
-            setEmoteList(doc.data());
-          }
-        })
-        .catch(err => console.log('err'));
-    };
-    getChatInfo();
-    getChatFB();
+    firestore
+      .collection('chatinfo')
+      .doc('emoteList')
+      .get()
+      .then(doc => {
+        if (!didCancel) {
+          setEmoteList(doc.data());
+          database
+            .ref('chatroom')
+            .limitToLast(50)
+            .on('value', snapshot => {
+              if (!didCancel) {
+                const messages = snapshot.exists()
+                  ? Object.values(snapshot.val())
+                  : [];
+                setMessages(messages);
+              }
+            });
+        }
+      })
+      .catch(err => console.log('err'));
+
     return function cleanup() {
       database.ref('chatroom').off();
       didCancel = true;
