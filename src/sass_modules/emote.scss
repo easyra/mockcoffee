@@ -5,3 +5,20 @@
   top: 7.5px;
   margin: -15px 2px 0;
 }
+
+.PepeLaugh {
+  transition: all 0.2;
+  &:hover {
+    animation: shake 0.2s infinite;
+  }
+}
+
+@keyframes shake {
+  from {
+    top: 8px;
+  }
+
+  to {
+    top: 7px;
+  }
+}
