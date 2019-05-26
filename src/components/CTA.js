@@ -3,12 +3,13 @@ import CTAText from './CTAText';
 import Schedule from './Schedule';
 import StreamingStatus from './StreamingStatus';
 import axios from 'axios';
+import StreamingCard from './StreamingCard';
 
 const CTA = () => {
   const [twitchFollowers, setTwitchFollowers] = useState([]);
-  const [isLive, setIsLive] = useState(false);
+  const [isLive, setIsLive] = useState(null);
   const [isMounted, setIsMounted] = useState(false);
-
+  const [timer, setTimer] = useState({});
   useEffect(() => {
     let didCancel = false;
 
@@ -49,16 +50,15 @@ const CTA = () => {
         .then(({ data }) => {
           if (!didCancel) {
             if (data.data[0]) {
-              setIsLive(true);
+              setIsLive(data.data[0]);
             } else {
-              setIsLive(false);
+              setIsLive(null);
             }
           }
         })
         .catch(err => console.log(err));
-      getLiveStatus();
     };
-
+    getLiveStatus();
     return () => {
       didCancel = true;
     };
@@ -70,8 +70,9 @@ const CTA = () => {
         <div className='content'>
           <CTAText />
           <div className='info'>
-            <Schedule twitchFollowers={twitchFollowers} />
-            {isLive && <StreamingStatus />}
+            {/* <Schedule twitchFollowers={twitchFollowers} />
+            {isLive && <StreamingStatus />} */}
+            <StreamingCard isLive={isLive} />
           </div>
         </div>
       </div>

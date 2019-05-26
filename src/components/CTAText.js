@@ -6,7 +6,7 @@ const CTAText = () => {
       <h1>
         <a href='#about'>MockCoffee</a>
       </h1>
-      <h2>Streaming Everyday 6AM - 10PM</h2>
+      <h2>Streaming Everyday 6AM-10PM</h2>
       <h3 className='btn animate'>Support The Stream</h3>
       <div className='links'>
         <a className='link' href='https://www.youtube.com' target='_blank'>
@@ -21,8 +21,6 @@ const CTAText = () => {
         <a className='link' href='https://www.youtube.com' target='_blank'>
           <i class='fab fa-twitter fa-3x link' />
         </a>
-
-        <i class='fas fa-arrow-left fa-4x arrow hide-mobile' />
       </div>
     </div>
   );

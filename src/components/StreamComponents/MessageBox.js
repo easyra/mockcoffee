@@ -5,7 +5,7 @@ import Emote from './Emote.js';
 const MessageBox = React.memo(
   ({ messages, emoteList, autoScroll, setAutoScroll }) => {
     const [maxScrollTop, setMaxScrollTop] = useState(null);
-    const ref = useRef(null);
+    const [activeName, setActiveName] = useState(null);
 
     const handleScroll = e => {
       const { scrollTop, scrollHeight } = e.target;
@@ -43,6 +43,7 @@ const MessageBox = React.memo(
                 wordArr[i] = (
                   <Emote src={emoteList[wordArr[i]]} emoteName={wordArr[i]} />
                 );
+              } else if (wordArr[i]) {
               } else {
                 wordArr[i] = wordArr[i] + ' ';
               }

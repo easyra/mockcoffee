@@ -1,6 +1,10 @@
+.landing {
+  padding: 64px 0 20px;
+  background: $color2;
+}
+
 .cta {
   overflow-x: hidden;
-  height: 800px;
   background: $bg;
   display: flex;
   justify-content: center;
@@ -11,15 +15,77 @@
     display: flex;
     justify-content: space-between;
     @media screen and (max-width: 800px) {
+      height: max-content;
       flex-wrap: wrap;
     }
 
     .info {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      max-width: 450px;
+      align-items: flex-end;
+      justify-content: center;
       width: 100%;
+      @media screen and (max-width: 800px) {
+        align-items: center;
+      }
+      .streaming-card {
+        // max-height: 300px;
+        margin-bottom: 15px;
+        padding: 15px;
+        // height: 100%;
+        // border-radius: 50%;
+        background: $color5;
+
+        color: $color2;
+        h2 {
+          font-size: 48px;
+          text-transform: uppercase;
+          padding-bottom: 5px;
+        }
+        h3 {
+          font-size: 24px;
+        }
+        text-align: center;
+        .video-list {
+          margin-bottom: 5px;
+          position: relative;
+          .img-bg {
+            max-width: 350px;
+            width: 100%;
+            max-height: 350px;
+            height: 100%;
+          }
+          img {
+            // padding-top: calc(360 / 360 * 100%);
+            // position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: all 0.2s;
+            max-width: 350px;
+            h6 {
+              // position: absolute;
+              // top: 0;
+            }
+          }
+        }
+        .btn {
+          margin-top: 15px;
+          text-align: center;
+          width: 100%;
+          margin: 0 auto;
+          i {
+            margin: 5px;
+          }
+        }
+        .youtube {
+          background: #c4302b;
+          color: #fff;
+        }
+        .twitch {
+          background: #6441a5;
+          color: #fff;
+        }
+      }
       .schedule {
         overflow-x: visible;
         color: $color4;
@@ -50,7 +116,10 @@
     .cta-text {
       max-width: 500px;
       width: 100%;
-      @media screen and (max-width: 500px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      @media screen and (max-width: 800px) {
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -64,22 +133,26 @@
       h1 {
         font-size: 72px;
         color: $color5;
+
         text-transform: uppercase;
         @media screen and (max-width: 500px) {
           font-size: 36px;
+          font-weight: bold;
         }
       }
       h2 {
         font-size: 24px;
         color: $color4;
-        margin-bottom: 15px;
       }
       h3 {
         margin: 15px 0;
       }
       .btn {
         @media screen and (max-width: 800px) {
-          font-size: 18px;
+          font-size: 38px;
+        }
+        @media screen and (max-width: 500px) {
+          font-size: 23px;
           text-align: center;
         }
       }
