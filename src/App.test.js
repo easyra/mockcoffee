@@ -1,9 +1,28 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import * as rtl from 'react-testing-library';
+import 'jest-dom/extend-expect';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import NavBar from './components/NavBar';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+afterEach(rtl.cleanup);
+
+describe('App', () => {
+  const fakeDom = rtl.render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
+  it('renders without crashing', () => {
+    // console.log(fakeDom.debug());
+  });
 });
+
+// describe('NavBar', () => {
+//   const element = rtl.render(
+//     <BrowserRouter>
+//       <NavBar />
+//     </BrowserRouter>
+//   );
+//   console.log(element.debug());
+// });
