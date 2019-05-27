@@ -1,5 +1,5 @@
 .landing {
-  padding: 64px 0 20px;
+  padding: 64px 0 0;
   background: $color2;
 }
 
@@ -148,6 +148,7 @@
         margin: 15px 0;
       }
       .btn {
+        background: $color0;
         @media screen and (max-width: 800px) {
           font-size: 38px;
         }
@@ -167,12 +168,21 @@
         .link {
           transition: all 0.3s;
           margin: 0 10px 0 0;
-          &:hover {
-            color: $color1;
-            cursor: pointer;
+          cursor: pointer;
+          .fa-youtube {
+            color: #c4302b;
           }
-          &:active {
-            color: $color4;
+          .fa-twitch {
+            color: #6441a5;
+          }
+          .fa-instagram {
+            color: #dd2a7b;
+          }
+          .fa-twitter {
+            color: #00acee;
+          }
+          &:hover {
+            transform: scale(1.048);
           }
           @media screen and (max-width: 500px) {
             margin: 0;
