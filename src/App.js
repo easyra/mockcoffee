@@ -23,14 +23,14 @@ function App() {
   const [isLoggedIn, setLoginStatus] = useState(false);
   useEffect(() => {
     let didCancel = false;
-    auth.onAuthStateChanged(async user => {
+    auth.onAuthStateChanged(user => {
       if (user) {
         firestore
           .collection('/users')
           .doc(user.uid)
           .get()
           .then(doc => {
-            if (didCancel) {
+            if (!didCancel) {
               if (doc.exists) {
                 setLoginStatus(true);
               } else {
@@ -39,7 +39,7 @@ function App() {
             }
           });
       } else {
-        if (didCancel) {
+        if (!didCancel) {
           setLoginStatus(false);
         }
       }
