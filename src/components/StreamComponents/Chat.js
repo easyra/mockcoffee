@@ -10,7 +10,9 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [autoScroll, setAutoScroll] = useState(true);
   const [myUsername, setMyUsername] = useState(false);
+  const [allUsers, setAllUsers] = useState({}); // For all users who have messages currently posted in the chat
   const [activeUsers, setActiveUsers] = useState({});
+  const [focusedUser, setFocusedUser] = useState(null); // Name of User being targeted by client user
   const { isLoggedIn } = useContext(LoggedIn);
 
   useEffect(() => {
@@ -82,6 +84,13 @@ const Chat = () => {
         .set(null);
     }
   });
+  const AddToAllUsers = newUser => {
+    //used to add user to alluser state
+    if (!allUsers[newUser]) {
+      const allUsersCopy = { [newUser]: true, ...allUsers };
+      setAllUsers(allUsersCopy);
+    }
+  };
 
   const addNewMessage = async text => {
     //Handles adding new messages to realtime firebase
@@ -97,6 +106,11 @@ const Chat = () => {
   return (
     <div className='chat'>
       <MessageBox
+        allUsers={allUsers}
+        AddToAllUsers={AddToAllUsers}
+        activeUsers={activeUsers}
+        focusedUser={focusedUser}
+        setFocusedUser={setFocusedUser}
         messages={messages}
         emoteList={emoteList}
         autoScroll={autoScroll}
