@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { LoggedIn } from '../../App.js';
 import ChatInput from './ChatInput';
 import MessageBox from './MessageBox';
 import { database, auth, firestore } from '../../firebase';
@@ -8,38 +9,79 @@ const Chat = () => {
   const [emoteList, setEmoteList] = useState({});
   const [messages, setMessages] = useState([]);
   const [autoScroll, setAutoScroll] = useState(true);
+  const [myUsername, setMyUsername] = useState(false);
+  const [activeUsers, setActiveUsers] = useState({});
+  const { isLoggedIn } = useContext(LoggedIn);
 
   useEffect(() => {
     let didCancel = false;
-    firestore
-      .collection('chatinfo')
-      .doc('emoteList')
-      .get()
-      .then(doc => {
-        if (!didCancel) {
-          setEmoteList(doc.data());
-          database
-            .ref('chatroom')
-            .limitToLast(50)
-            .on('value', snapshot => {
-              if (!didCancel) {
-                setMessages([]);
-                const messages = snapshot.exists()
-                  ? Object.values(snapshot.val())
-                  : [];
-                setMessages(messages);
-              }
-            });
-        }
-      })
-      .catch(err => console.log('err'));
+    const getChatInfo = () => {
+      firestore
+        .collection('chatinfo')
+        .doc('emoteList')
+        .get()
+        .then(doc => {
+          if (!didCancel) {
+            setEmoteList(doc.data());
+          }
+        });
+    };
+    const getActiveUsers = () => {
+      database.ref('activeUsername').on('value', snapshot => {
+        setActiveUsers(snapshot.val());
+      });
+    };
+
+    const removeActiveUser = () => {
+      if (auth.currentUser && auth.currentUser.displayName) {
+        database
+          .ref(`activeUsername/${auth.currentUser.displayName}`)
+          .set(null);
+      }
+    };
+
+    const getChat = () => {
+      database
+        .ref('chatroom')
+        .limitToLast(50)
+        .on('value', snapshot => {
+          if (!didCancel) {
+            setMessages([]);
+            const messages = snapshot.exists()
+              ? Object.values(snapshot.val())
+              : [];
+            setMessages(messages);
+            if (!didCancel && isLoggedIn) {
+              database
+                .ref(`activeUsername/${auth.currentUser.displayName}`)
+                .set(true);
+              database
+                .ref(`activeUsername/${auth.currentUser.displayName}`)
+                .onDisconnect()
+                .set(null);
+            }
+          }
+        });
+    };
+
+    getChatInfo();
+    getActiveUsers();
+    getChat();
 
     return function cleanup() {
       database.ref('chatroom').off();
+      database.ref('activeUsername').off();
       setMessages([]);
+      removeActiveUser();
       didCancel = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (isLoggedIn && auth.currentUser) {
+      database.ref(`activeUsername/${auth.currentUser.displayName}`).set(true);
+    }
+  });
 
   const addNewMessage = async text => {
     if (auth.currentUser) {

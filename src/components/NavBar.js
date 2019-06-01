@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { auth, firestore } from '../firebase';
+import { auth, firestore, database } from '../firebase';
 import { LoggedIn } from '../App';
 
 const NavBar = ({
@@ -14,6 +14,7 @@ const NavBar = ({
   const { isLoggedIn } = useContext(LoggedIn);
   const handleLogButton = () => {
     if (isLoggedIn) {
+      database.ref(`activeUsername/${auth.currentUser.displayName}`).set(null);
       auth
         .signOut()
         .then(() => {
