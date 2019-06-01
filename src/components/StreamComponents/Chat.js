@@ -16,6 +16,7 @@ const Chat = () => {
   useEffect(() => {
     let didCancel = false;
     const getChatInfo = () => {
+      // Responsible for getting an necassiry chat infomation Ex: emotes
       firestore
         .collection('chatinfo')
         .doc('emoteList')
@@ -28,11 +29,13 @@ const Chat = () => {
     };
     const getActiveUsers = () => {
       database.ref('activeUsername').on('value', snapshot => {
+        // Gets a list of all the users currently using chat
         setActiveUsers(snapshot.val());
       });
     };
 
     const removeActiveUser = () => {
+      // Removes any user that isn't using chat. Used when user dismounts chat
       if (auth.currentUser && auth.currentUser.displayName) {
         database
           .ref(`activeUsername/${auth.currentUser.displayName}`)
@@ -41,6 +44,7 @@ const Chat = () => {
     };
 
     const getChat = () => {
+      // Grabs the last 50 messages from chat
       database
         .ref('chatroom')
         .limitToLast(50)
@@ -51,15 +55,6 @@ const Chat = () => {
               ? Object.values(snapshot.val())
               : [];
             setMessages(messages);
-            if (!didCancel && isLoggedIn) {
-              database
-                .ref(`activeUsername/${auth.currentUser.displayName}`)
-                .set(true);
-              database
-                .ref(`activeUsername/${auth.currentUser.displayName}`)
-                .onDisconnect()
-                .set(null);
-            }
           }
         });
     };
@@ -78,12 +73,18 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
+    // Adds User to list of active users when they're logged in
     if (isLoggedIn && auth.currentUser) {
       database.ref(`activeUsername/${auth.currentUser.displayName}`).set(true);
+      database
+        .ref(`activeUsername/${auth.currentUser.displayName}`)
+        .onDisconnect()
+        .set(null);
     }
   });
 
   const addNewMessage = async text => {
+    //Handles adding new messages to realtime firebase
     if (auth.currentUser) {
       const username = auth.currentUser.displayName;
       const uid = auth.currentUser.uid;
