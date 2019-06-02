@@ -17,9 +17,9 @@ const Message = ({
       style={focusedUser && !mentions[focusedUser] ? unfocused : null}
     >
       <span className='username' onClick={handleClick}>
-        {username}:{' '}
+        {username}
       </span>
-      {text}
+      : {text}
     </div>
   );
 };
