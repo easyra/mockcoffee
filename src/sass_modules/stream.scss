@@ -43,9 +43,11 @@
       }
 
       .bottom-text {
-        position: fixed;
+        position: relative;
         background: rgba(0, 0, 0, 0.8);
-        display: none;
+        display: flex;
+        visibility: hidden;
+        justify-content: center;
         max-width: 263px;
         width: 100%;
         padding: 5px 15px;
@@ -60,7 +62,7 @@
           max-width: 1000px;
         }
         &.active {
-          display: inline-block;
+          visibility: inherit;
         }
       }
 
