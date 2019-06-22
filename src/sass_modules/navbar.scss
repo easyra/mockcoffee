@@ -2,14 +2,16 @@
   position: fixed;
   background: $color5;
   width: 100%;
-  overflow: hidden;
+  // overflow: hidden;
   z-index: 2;
   display: flex;
   align-items: center;
-  // padding: 15px 0;
   top: 0;
   left: 0;
   .title {
+    position: absolute;
+    left: 0;
+    margin-left: 15px;
     text-transform: uppercase;
     color: $color2;
     font-size: 24px;
@@ -39,13 +41,15 @@
     width: 100%;
     .items {
       display: flex;
-      justify-content: space-around;
+      justify-content: flex-end;
       align-items: center;
       width: 100%;
       @media screen and (max-width: 500px) {
         justify-content: center;
       }
       .item {
+        position: relative;
+        margin: 0 0px 0 10px;
         @media screen and (max-width: 500px) {
           display: none;
         }
@@ -64,13 +68,43 @@
             color: $color1;
           }
         }
-        &:hover {
-          color: $color1;
-        }
+
         &:active {
-          color: $color3;
+          // color: $color3;
+        }
+        .socials {
+          position: absolute;
+          background: $color5;
+          z-index: 5;
+          left: 0;
+          display: none;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          // box-shadow: 2px 2px 2px black;
+          // border: 1px solid $color1;
+          a:hover {
+            color: $color1;
+          }
+          a {
+            width: 100%;
+            text-align: center;
+          }
         }
       }
+      i {
+        transition: all 0.2s;
+        margin-left: 5px;
+      }
+      .dropdown:hover {
+        i {
+          transform: rotate(180deg);
+        }
+        .socials {
+          display: flex;
+        }
+      }
+
       .login-btn {
         @extend .btn;
         font-size: 16px;

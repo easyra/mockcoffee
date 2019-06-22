@@ -46,37 +46,29 @@ const NavBar = ({
             class={`fas fa-${navbarModel ? 'times' : 'bars'} menu  fa-2x`}
             onClick={toggleNavModel}
           />
-          <li>
-            <a className='item' href='https://www.youtube.com' target='_blank'>
-              YouTube
-            </a>
+          <li className='item dropdown'>
+            <li>
+              Socials
+              <i class='fas fa-caret-down' />
+            </li>
+            <div className='socials'>
+              <a className='link item'>YouTube</a>
+              <a className='link item'>Discord</a>
+              <a className='link item'>Instagram</a>
+              <a className='link item'>Twitter</a>
+            </div>
           </li>
-          <li>
-            <a className='item' href='https://www.youtube.com' target='_blank'>
-              Twitch
-            </a>
-          </li>
-          <li>
-            <a className='item' href='https://www.youtube.com' target='_blank'>
-              Instagram
-            </a>
-          </li>
-
-          <li className='hide-tablet'>
-            <a className='item' href='https://www.youtube.com' target='_blank'>
-              Twitter
-            </a>
-          </li>
-          <li className='hide-tablet'>
-            <a className='item' href='https://www.youtube.com' target='_blank'>
-              Discord
-            </a>
-          </li>
-          <li>
-            <a className='item' href='https://www.youtube.com' target='_blank'>
+          <li className='item dropdown'>
+            <li>
               Shop
-            </a>
+              <i class='fas fa-caret-down' />
+            </li>
+            <div className='socials'>
+              <a className='link item'>T-Spring</a>
+            </div>
           </li>
+          <a className='item'>Donate</a>
+          <a className='item'>Subscribe</a>
           {!(location.pathname === '/stream') && (
             <li>
               <Link className='item stream-link' to='/stream'>

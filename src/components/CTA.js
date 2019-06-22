@@ -68,12 +68,12 @@ const CTA = () => {
     <>
       <div className='cta'>
         <div className='content'>
-          <CTAText />
           <div className='info'>
             {/* <Schedule twitchFollowers={twitchFollowers} />
             {isLive && <StreamingStatus />} */}
             <StreamingCard isLive={isLive} />
           </div>
+          <CTAText />
         </div>
       </div>
     </>

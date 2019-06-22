@@ -7,10 +7,10 @@ const LandingPage = () => {
     <>
       <div className='landing'>
         <CTA />
-        <AboutContainer />
-        <div className='footer'>
+        {/* <AboutContainer /> */}
+        {/* <div className='footer'>
           <h4>Contact me at MockCoffee@gmail.com</h4>
-        </div>
+        </div> */}
       </div>
     </>
   );

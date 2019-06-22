@@ -1,11 +1,13 @@
 .landing {
   padding: 44px 0 0;
   background: $color2;
+  height: 100%;
 }
 
 .cta {
   padding: 4% 0;
   overflow-x: hidden;
+
   background: $bg;
   display: flex;
   justify-content: center;
@@ -25,7 +27,6 @@
       flex-direction: column;
       align-items: flex-end;
       justify-content: center;
-      width: 100%;
       @media screen and (max-width: 800px) {
         align-items: center;
       }
@@ -116,7 +117,7 @@
     }
 
     .cta-text {
-      max-width: 500px;
+      max-width: max-content;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -145,12 +146,15 @@
       h2 {
         font-size: 24px;
         color: $color4;
+        text-align: center;
       }
       h3 {
         margin: 15px 0;
       }
       .btn {
+        text-align: right;
         background: $color0;
+        margin: 15px auto;
         @media screen and (max-width: 800px) {
           font-size: 38px;
         }
@@ -162,6 +166,7 @@
       .links {
         color: $color3;
         display: flex;
+        justify-content: center;
         align-items: center;
         @media screen and (max-width: 500px) {
           justify-content: space-around;
